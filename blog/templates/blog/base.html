@@ -1,24 +1,27 @@
-{% load static %}
+{% load static %} <!-- Carrega as tags de template estático do Django -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <title>Sama Blog</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ola Mundo</title>
 </head>
 <body>
     <div class="page-header">
-        <h1><a href="/">Meu Blog</a></h1>
+        <!-- Verifica se o usuário está autenticado -->
+        {% if user.is_authenticated %}
+        <!-- Link para criar um novo post, visível apenas para usuários autenticados -->
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
+        <h1><a href="/">Sama Blog</a></h1>
     </div>
-
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
+                <!-- Bloco de conteúdo que pode ser substituído por conteúdo específico de cada página -->
                 {% block conteudo %}
                 {% endblock %}
             </div>

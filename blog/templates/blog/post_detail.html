@@ -1,13 +1,20 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/base.html' %} <!-- Estende a template base.html do aplicativo blog -->
 
-{% block conteudo %}
+{% block conteudo %} <!-- Define o bloco de conteúdo específico desta página -->
     <div class = "post">
         {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
             </div>
         {% endif %}
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text }}</p><br>
+        <br>
+        <!-- Verifica se o usuário está autenticado -->
+        {% if user.is_authenticated %}
+        <!-- Link para editar um post, visível apenas para usuários autenticados -->
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            Editar
+            {% endif %}
+        <h2>{{ post.title }}</h2> <!-- Exibe o título do post -->
+        <p>{{ post.text }}</p><br> <!-- Exibe o texto do post -->
     </div>
 {% endblock %}

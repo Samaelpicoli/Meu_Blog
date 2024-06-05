@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+"""
+Este módulo define os padrões de URLs para o projeto mysite, 
+incluindo as URLs do administrador e as URLs do aplicativo de blog.
+"""
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls'))

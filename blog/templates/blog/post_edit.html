@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %} <!-- Estende a template base.html do aplicativo blog -->
+
+{% block conteudo %} <!-- Define o bloco de conteúdo específico desta página -->
+    <h2>Novo Post</h2>
+    <form method="POST" class="post-form">{% csrf_token %} <!-- Formulário para criar um novo post, utilizando o método de proteção CSRF token -->
+        {{ form.as_p }} <!-- Renderiza o formulário usando o método 'as_p', que exibe os campos como parágrafos -->
+        <button type="submit" class="save btn btn-default">Salvar Post</button>
+    </form>
+{% endblock %}
